@@ -1,3 +1,5 @@
+# ch1. Reliable, Stable, and Maintainable Application
+
 ## Reliable 
 
 * Hardware Faults
@@ -45,3 +47,18 @@ An architecture that scales well for a particular application is built around as
 * Evolvability
 
   Make it easy for engineers to make changes to the system in the future
+
+# ch2. Data Models and Query Languages
+
+each layer hides the complexity of the layers below it by providing a clean data model
+
+## Relational Model Versus Document Model
+
+NoSQL (Not Only SQL)
+
+​	名字来源twitter上的hashtag
+
+The Object-Relational Mismatch 
+
+​	现在很多程序都是基于面向对象来做的，如果底层是关系模型表，需要一个中间层来处理（Object-relation mapping) ORM
+
