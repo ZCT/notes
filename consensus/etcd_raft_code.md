@@ -122,7 +122,7 @@ type raftLog struct {
 
 
 
-###Optimize
+### Optimize
 
 **如何避免分区的时候 disruptive serice**
 
