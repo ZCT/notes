@@ -192,5 +192,5 @@ type ReadState struct {  //用于保存读请求到来时的节点状态
 
 ### References
 
-[raft-thesis paper]()
+[raft-thesis paper](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)
 
