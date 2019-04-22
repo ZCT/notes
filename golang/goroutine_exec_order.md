@@ -47,7 +47,7 @@ func main()
 ```
 newproc1(){
 	runqput(_p_, newg, true){
-			//将该goruntine放入runq数组尾部，根绝最后一个参数是否为true，将next指针指向该goroutine
+			//将该goruntine放入runq数组尾部，根据最后一个参数是否为true，将next指针指向该goroutine
 		}
 	}
 	
@@ -55,17 +55,17 @@ newproc1(){
 
 ```
 
-![image-20190422015543137](/Users/tangzhongcheng/Library/Application Support/typora-user-images/image-20190422015543137.png)
+![image-20190422015543137](https://github.com/zct/notes/blob/master/golang/img/image-20190422015543137.png?raw=true)
 
-然后我们再来看，是如何调度gorountine运行的，调度的逻辑在schedule中，其中的一些逻辑可以通过相关资料查看，这里我们主要关心是如何从processor的run queue中取数据的，主要逻辑在runqget中
+然后我们再来看，是如何调度gorountine运行的。调度的逻辑在schedule函数中，这里我们主要关心是如何从processor的run queue中取数据的，其中是通过函数runqget来获得的
 
-![image-20190422020131164](/Users/tangzhongcheng/Library/Application Support/typora-user-images/image-20190422020131164.png)
+![image-20190422020131164](https://github.com/zct/notes/blob/master/golang/img/image-20190422020131164.png?raw=true)
 
 ​	首先从next指针得到下一个要执行的goroutine地址，如果为空，则从runq数组中获取，从数组头部元素开始获取
 
 ​	回过头来再看我们原来的代码，程序下个运行的goroutine应该是最后一个创建的，然后再按照先进先出的顺序来执行，第二段代码的输出符合我们的预期
 
-​	为什么第一段代码，在执行完time.Sleep后，goroutine的执行顺序跟预期的不一致呢？我们继续再来看看sleep函数里面做了什么:
+​	为什么第一段代码，在执行完time.Sleep后，goroutine的执行顺序跟预期的不一致呢？我们继续再来看看sleep函数里面做了什么，这是sleep中的函数调用逻辑：
 
 ```
 time.Sleep 
@@ -76,6 +76,16 @@ time.Sleep
 ```
 
 所以到这里，next指向的是timeProc，之前创建的goroutine则是按照先入先出的顺序来执行的
+
+
+
+***结论***：
+
+​	在processor的run queue中，gorountine是按照先进先出的顺序被调度执行的，但是最后一个创建的gorountine会被插入到下一个要执行的位置(next指针指向)
+
+
+
+*相关阅读*
 
 
 
