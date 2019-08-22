@@ -9,7 +9,7 @@ Another is that both `Type` and `Value` have a `Kind` method that returns a cons
 * Reflection goes frm interface value to reflection object
 
 * Reflection goes from reflection object to interface value
-* To modify a reflection object, the value must be settable.
+* To modify a reflection object, the value must be settable
 
 ### references
 
