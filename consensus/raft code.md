@@ -63,3 +63,32 @@ match is the index of the highest known matched entry
 Next is the index of the first entry that will be replicated to the follower.  Leader puts entries from next to its latest one in next replication message.
 
 node.go 应用层和raft共识算法的衔接
+
+
+
+
+
+
+
+## mycode
+
+matchIndex 如何网上加
+
+nextIndex 
+
+
+
+
+
+选举的时候，如何定义候选者的的log **up to date**
+
+> comparing the index and term of the last entries in the logs
+>
+> 如果最后一个日志的term不相同，term大的更新
+>
+> 如果最后一个日志的term相同，日志长的更新
+
+
+
+leader提交日志的时候，限制只能提交当前term的日志，（以前term的日志由于 log match 特性会自动commit）
+

@@ -88,3 +88,25 @@ gc 1404     : The 1404 GC run since the program started
 [Garbage Collection Semantics视频](<https://www.youtube.com/watch?v=q4HoWwdZUHs>)
 
 [garbage collector](<https://www.ardanlabs.com/blog/2018/12/garbage-collection-in-go-part1-semantics.html>)
+
+
+
+
+
+# #
+
+[gc详细](https://blog.golang.org/ismmkeynote)
+
+
+
+如果一个slice里面的key是*int，gc的代价会高
+
+key是int gc的代价会低
+
+具体原因是啥？ 如果是指针，gc的时候需要全部扫描一遍，决定哪些是可以回收的
+
+> freecache gc overhead
+>
+> FreeCache avoids GC overhead by reducing the number of pointers. No matter how many entries stored in it, there are only 512 pointers. The data set is sharded into 256 segments by the hash value of the key. Each segment has only two pointers, one is the ring buffer that stores keys and values, the other one is the index slice which used to lookup for an entry. Each segment has its own lock, so it supports high concurrent access.
+>
+> 
