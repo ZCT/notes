@@ -8,7 +8,7 @@
 
 export GO111MODULE=on
 
-export GOPROXY="https://go-mod-proxy.byted.org"
+export GOPROXY="https://go-mod-proxy.xxx.org"
 
 
 
@@ -36,3 +36,7 @@ git push --tags
 
 
 go mod tidy why
+
+
+
+如果某个项目想要依赖其他项目的分支代码 ，在这个项目目录下 go get -u  包名@tzc
