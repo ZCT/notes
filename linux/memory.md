@@ -8,7 +8,7 @@ rss不包括文件缓存(page/cache)
 >
 > [docker 内存监控指标详解](https://docs.docker.com/config/containers/runmetrics/)
 >
-> rss = active_anon+inactive_anon-tmpfs
+> rss = active_anon+inactive_anon - tmpfs
 >
 > 程序本身的二进制文件内存也包含在rss中
 >
@@ -22,13 +22,13 @@ rss不包括文件缓存(page/cache)
 >
 > （2）用户空间的文件映射页（Mapped pages in User Mode address spaces），包含map file和map tmpfs；前者比如指定文件的mmap，后者比如IPC共享内存；当系统内存不够时，内核可以回收这些页，但回收之前可能需要与文件同步数据；
 >
-> （3）文件缓存（page in page cache of disk file）；发生在程序通过普通的read/write读写文件时，当系统内存不够时，内核可以回收这些页，但回收之前可能需要与文件同步数据；
+> （3）文件缓存（page in page cache of disk file）；发生在程序通过普通的read/write读写文件时，当系统内存不够时，内核可以回收这些页，但回收之前可能需要与文件/磁盘同步数据；
 >
 > （4）buffer pages，属于page cache；比如读取块设备文件。
 >
 > 
 
-**大家普遍认为，buffers和cached所占用的内存空间是可以在内存压力较大的时候被释放当做空闲空间用的。**
+**大家（一般情况下也可以）普遍认为，buffers和cached所占用的内存空间是可以在内存压力较大的时候被释放当做空闲空间用的。**
 
 貌似线上docker部署的服务在oom计算内存的时候，是包括了cache/buffer的
 
@@ -58,7 +58,7 @@ rss不包括文件缓存(page/cache)
 
 一般来说，分配内存的时候，只是分配了虚拟内存空间，真正申请内存还是要等到实际使用的时候。
 
-active_rss 和 inactive_rss 其中 active和inactive的是swap的特性要用到的，一般来说inactive是可以被swap的
+active_rss 和 inactive_rss 其中 active和inactive的是swap的特性要用到的，一般来说inactive是可以被swap的。不过业务线上系统一般都会禁止swap
 
 [linux memory子系统介绍](https://github.com/digoal/blog/blob/master/201701/20170111_02.md)
 
