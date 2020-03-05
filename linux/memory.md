@@ -34,7 +34,7 @@ rss不包括文件缓存(page/cache)
 
 > [三年前的这个issue可以佐证这一点](https://github.com/moby/moby/issues/21759)
 >
-> page/cache一般是为了提高io的性能，但是他什么时候刷回磁盘呢，linux内核中有如下参数（跟docker无关，系统级别的行为）：
+> page/cache一般是为了提高io的性能，但是它什么时候刷回磁盘呢，linux内核中有如下参数（跟docker无关，系统级别的行为）：
 >
 > ```sh
 > $ sysctl -a | grep dirty
@@ -53,8 +53,6 @@ rss不包括文件缓存(page/cache)
 > ```
 >
 >  
-
-
 
 一般来说，分配内存的时候，只是分配了虚拟内存空间，真正申请内存还是要等到实际使用的时候。
 

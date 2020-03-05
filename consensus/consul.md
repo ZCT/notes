@@ -32,3 +32,4 @@ docker ps   //查看
 docker exec -t node1 consul members  //docker上执行民命令
 ```
 
+ge

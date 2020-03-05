@@ -56,3 +56,12 @@ In linearizability,  each operation appears to execute instantaneously, exactly 
 
 给每个client分配一个id，client给每个命令分配一个serial number，server端记录一个session。为了防止并发的情况，记录client的所有请求，并且定期淘汰，客户端需要includes the lowest sequence number for which it has not yet received a response
 
+
+
+
+
+有个地方事后总是忘记， Committing entries from previous terms  其实是在S3这一步出现了问题，S3这一步出现的问题是commit了以前的log
+
+![image-20191230211954997](/Users/tangzhongcheng/Library/Application Support/typora-user-images/image-20191230211954997.png)
+
+http://dev.poetpalace.org/?p=632 这个文档里解释的比较清楚了

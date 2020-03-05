@@ -1,4 +1,4 @@
-
+他·
 
 相关资料：
 
@@ -40,3 +40,22 @@ go mod tidy why
 
 
 如果某个项目想要依赖其他项目的分支代码 ，在这个项目目录下 go get -u  包名@tzc
+
+
+
+ go clean -modcache 清理所以已缓存的模块版本数据
+
+go mod graph 查看现有的依赖结构
+
+ go mod download 下载go.mod文件中指明的所有依赖
+
+
+
+go get -u all
+
+
+
+go get -u code.xxxxx.org/kite/kite
+
+
+
